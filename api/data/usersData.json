@@ -1,0 +1,35 @@
+[
+   {
+      "nome":"Jhon",
+      "sobrenome":"Doe",
+      "estadoCivil":"Solteiro",
+      "dataNascimento":"01/05/1991",
+      "email":"jhondoe@dominio.com",
+      "pais":"Brasil",
+      "cidade":"Rio de Janeiro",
+      "estado":"RJ",
+      "salario":1200
+   },
+   {
+      "nome":"Martha",
+      "sobrenome":"Doe",
+      "estadoCivil":"Solteiro",
+      "dataNascimento":"01/05/1991",
+      "email":"jhondoe@dominio.com",
+      "pais":"Brasil",
+      "cidade":"Rio de Janeiro",
+      "estado":"RJ",
+      "salario":2500
+   },
+   {
+      "nome":"Andre",
+      "sobrenome":"Doe",
+      "estadoCivil":"Solteiro",
+      "dataNascimento":"01/05/1991",
+      "email":"jhondoe@dominio.com",
+      "pais":"Brasil",
+      "cidade":"Rio de Janeiro",
+      "estado":"RJ",
+      "salario":4000
+   }
+]
