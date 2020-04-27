@@ -1,0 +1,19 @@
+{
+  "name": "financialapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nicodemos305/challenge-megahackton-2020-04-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nicodemos305/challenge-megahackton-2020-04-api/issues"
+  },
+  "homepage": "https://github.com/Nicodemos305/challenge-megahackton-2020-04-api#readme"
+}
