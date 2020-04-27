@@ -1,9 +1,11 @@
-FROM ubuntu:latest
-RUN apt-get update && apt-get install npm -y && apt-get install nodejs -y
+FROM alpine:latest
+RUN apk add --update npm 
+RUN apk add --update nodejs
 RUN cd /opt/ && mkdir project && cd project
 COPY . /opt/project/
 RUN npm install
 EXPOSE 8080
-ENTRYPOINT ["/usr/sbin/npm"]
+WORKDIR /opt/project
+ENTRYPOINT ["npm"]
 CMD ["start"]
 
