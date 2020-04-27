@@ -8,7 +8,7 @@ module.exports = () => {
   app.set('port', process.env.PORT || config.get('server.port'));
   app.use(bodyParser.json());
   require('../api/routes/user/usersRoute')(app);
-
+  require('../api/routes/goals/goalsRoute')(app);
 
   return app;
 };
