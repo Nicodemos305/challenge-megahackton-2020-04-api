@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const authConfig = require('../../utils/authUtils');
 const Yup = require('yup');
+const { User } = require('../../database');
 
 class SessionController {
 
@@ -21,7 +22,7 @@ class SessionController {
       return res.status(400).json({ error: 'Falha na validação' });
     }
 
-    // validar no banco de dados
+    
 
     return res.json({
       token: jwt.sign({ phone }, authConfig.secret, { expiresIn: authConfig.expiresIn })
