@@ -4,6 +4,7 @@ const SessionController =  require('./app/controllers/SessionController');
 const UserController =  require('./app/controllers/UserController');
 const GoalController =  require('./app/controllers/GoalController');
 const SpendingController =  require('./app/controllers/SpendingController');
+const FinancialAccountController = require('./app/controllers/FinancialAccountController');
 
 const authMiddleware = require('./app/middleware/auth');
 
@@ -18,6 +19,8 @@ routes.get('/goals', GoalController.getAllGoalsByUserPhone);
 routes.delete('/goal', GoalController.deleteGoalById);
 routes.post('/spending', SpendingController.create);
 routes.get('/spendings', SpendingController.getAllspendings);
+routes.post('/financialAccount', FinancialAccountController.create);
+routes.get('/financialAccount', FinancialAccountController.getFinancialAccountsByUserPhone);
 routes.delete('/spending', SpendingController.deleteSpendingById);
 routes.use(authMiddleware);
 
