@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const authConfig = require('../../utils/authutils');
+const authConfig = require('../../utils/authUtils');
 const Yup = require('yup');
 const { FinancialAccount } = require('../../database/index');
 
