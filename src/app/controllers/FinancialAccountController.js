@@ -46,5 +46,26 @@ class FinancialAccountController {
         return res.json({result: financialAccount});
     }
 
+    /**
+    * creat - creat financiaAccount
+    * 
+    * @param {*} req
+    * @param {*} res
+    */
+    async depositFinancialAccount(req, res) {
+
+        var financialAccountDetail = await FinancialAccount.read({"phone" : req.query.phone}).then(function (financiaAccount) {
+            console.log(JSON.stringify(financiaAccount));
+            var deposit = req.body.deposit;
+            var objeto = financiaAccount[0];
+            objeto.balance = objeto.balance + deposit;
+            console.log(JSON.stringify(financiaAccount));
+            const financiaAccountUpdated = FinancialAccount.update(objeto._id, objeto);
+            return res.json({result: financiaAccountUpdated });});
+     
+       
+            console.log(JSON.stringify(financialAccountDetail));
+    }
+
 }
 module.exports = new FinancialAccountController();
