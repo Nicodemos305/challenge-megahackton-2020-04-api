@@ -26,7 +26,7 @@ class SpendingController {
       async getAllspendings(req, res) {
         try{
             var spendings = await Spending.read({"phone" : req.query.phone}).then(function (spendings) {
-                return res.json({result: spendings});
+                return res.json({result: spendings, total : spendings.length});
             });
             console.log("Success :".concat(JSON.stringify(spendings)));
         }catch(err){

@@ -25,7 +25,7 @@ class GoalController {
     async getAllGoalsByUserPhone(req, res) {
       try{
           var goals = await Goal.read({"phone" : req.query.phone}).then(function (goals) {
-              return res.json({result: goals});
+              return res.json({result: goals, total : goals.length});
           });
           console.log("Success :".concat(JSON.stringify(goals)));
       }catch(err){

@@ -19,10 +19,6 @@ routes.delete('/goal', GoalController.deleteGoalById);
 routes.post('/spending', SpendingController.create);
 routes.get('/spendings', SpendingController.getAllspendings);
 routes.delete('/spending', SpendingController.deleteSpendingById);
-
-
-
-
 routes.use(authMiddleware);
 
 module.exports = routes;
