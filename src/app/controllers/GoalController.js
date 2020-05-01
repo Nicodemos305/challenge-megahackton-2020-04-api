@@ -22,9 +22,9 @@ class GoalController {
      * @param {*} req 
      * @param {*} res 
      */
-    async getAllGoals(req, res) {
+    async getAllGoalsByUserPhone(req, res) {
       try{
-          var goals = await Goal.read().then(function (goals) {
+          var goals = await Goal.read({"phone" : req.query.phone}).then(function (goals) {
               return res.json({result: goals});
           });
           console.log("Success :".concat(JSON.stringify(goals)));
