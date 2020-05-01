@@ -17,6 +17,18 @@ class UserController {
     const user = await User.create(req.body);
     return res.json({result: user});
   }
+
+  async getUserByPhone(req, res) {
+    try{
+        var user = await User.read({"phone" : req.query.phone}).then(function (user) {
+            return res.json({result: user});
+          });
+        console.log("Success :".concat(JSON.stringify(user)));
+    }catch(err){
+        console.log(err);
+        return res.json({result: "error"});
+    }
+}
   
 }
 

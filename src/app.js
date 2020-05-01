@@ -7,7 +7,7 @@ require('./database');
 
 class App {
 
-  PATH_BASE = '/api/v1';
+   PATH_BASE = '/api/v1';
 
   constructor() {
     this.server = express();

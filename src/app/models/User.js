@@ -13,6 +13,11 @@ const userSchema = new Mongoose.Schema({
         type: String,
         required: true
     },
+    phone: {
+        type: String,
+        required: true,
+        unique: true 
+      },
     maritalStatus: String,
     dateOfbirth: Date,
     country: String,
