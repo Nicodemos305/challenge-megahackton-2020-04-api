@@ -15,6 +15,12 @@ const loginSchema = new Mongoose.Schema({
       type: String,
       required: true
     },
+    code: {
+      type: String,
+    },
+    confirmatedCodeAt: {
+      type: Date
+    },
     insertedAt: {
         type: Date,
         default: new Date()

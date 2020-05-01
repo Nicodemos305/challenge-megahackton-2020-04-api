@@ -6,7 +6,8 @@ const authMiddleware = require('./app/middleware/auth');
 
 const routes = new Router();
 
-routes.post('/register', LoginController.create);
+routes.put('/confirmation', LoginController.confirmationLogin);
+routes.post('/registers', LoginController.create);
 routes.post('/sessions', SessionController.store);
 routes.post('/users', UserController.create);
 routes.use(authMiddleware);
