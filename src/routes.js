@@ -14,6 +14,7 @@ routes.post('/registers', LoginController.create);
 routes.post('/sessions', SessionController.store);
 routes.post('/users', UserController.create);
 routes.get('/user', UserController.getUserByPhone);
+routes.post('/goal', GoalController.create);
 routes.get('/goals', GoalController.getAllGoalsByUserPhone);
 routes.delete('/goal', GoalController.deleteGoalById);
 routes.post('/spending', SpendingController.create);

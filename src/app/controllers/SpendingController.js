@@ -3,7 +3,6 @@ const authConfig = require('../../utils/authUtils');
 const Yup = require('yup');
 const { Spending } = require('../../database/index');
 
-
 class SpendingController {
 
         /**
@@ -13,9 +12,14 @@ class SpendingController {
      * @param {*} res 
      */
     async create(req, res) {
+      try{
         const spending = await Spending.create(req.body);
-        return res.json({result: spending});
+        return res.status(201).json({result: spending});
+      }catch(err){
+        console.log(err);
+        return res.status(500).json({result: "error"});
       }
+    }
       
       /**
        * GetAll - get spendings
@@ -31,11 +35,11 @@ class SpendingController {
             console.log("Success :".concat(JSON.stringify(spendings)));
         }catch(err){
             console.log(err);
-            return res.json({result: "error"});
+            return res.status(500).json({result: "error"});
         }
       }
 
-              /**
+    /**
      * Delete - delete spending 
      * 
      * @param {*} req 

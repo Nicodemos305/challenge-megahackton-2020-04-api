@@ -30,4 +30,4 @@ const spendingSchema = new Mongoose.Schema({
     }
 })
 
-module.exports = Mongoose.models.spending || Mongoose.model('spending', spendingSchema)
+module.exports = Mongoose.models.spending || Mongoose.model('spending', spendingSchema);

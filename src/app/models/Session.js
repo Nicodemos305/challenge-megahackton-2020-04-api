@@ -15,4 +15,4 @@ const sessionSchema = new Mongoose.Schema({
 })
 
 // mocha workaround
-module.exports = Mongoose.models.session || Mongoose.model('session', sessionSchema)
+module.exports = Mongoose.models.session || Mongoose.model('session', sessionSchema);

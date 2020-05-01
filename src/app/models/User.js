@@ -35,4 +35,4 @@ const userSchema = new Mongoose.Schema({
 })
 
 // mocha workaround
-module.exports = Mongoose.models.user || Mongoose.model('user', userSchema)
+module.exports = Mongoose.models.user || Mongoose.model('user', userSchema);

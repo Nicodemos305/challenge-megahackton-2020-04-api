@@ -3,8 +3,6 @@ const authConfig = require('../../utils/authUtils');
 const Yup = require('yup');
 const { User } = require('../../database/index');
 
-
-
 class UserController {
 
   /**
@@ -14,19 +12,25 @@ class UserController {
    * @param {*} res 
    */
   async create(req, res) {
-    const user = await User.create(req.body);
-    return res.json({result: user});
+    try{
+      const user = await User.create(req.body);
+      return res.status(201).json({result: user});
+    }catch(err){
+      console.log(err);
+      return res.status(500).json({result: "error"});
+    }
+
   }
 
   async getUserByPhone(req, res) {
     try{
         var user = await User.read({"phone" : req.query.phone}).then(function (user) {
-            return res.json({result: user});
+            return res.status(200).json({result: user});
           });
         console.log("Success :".concat(JSON.stringify(user)));
     }catch(err){
         console.log(err);
-        return res.json({result: "error"});
+        return res.status(500).json({result: "error"});
     }
 }
   
