@@ -33,6 +33,17 @@ class GoalController {
           return res.json({result: "error"});
       }
     }
+
+        /**
+     * Delete - delete goal 
+     * 
+     * @param {*} req 
+     * @param {*} res 
+     */
+    async deleteGoalById(req, res) {
+      const goal = await Goal.delete({"_id" : req.query._id });
+      return res.json({result: goal});
+    }
   }
 
   

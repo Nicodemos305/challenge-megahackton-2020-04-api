@@ -34,6 +34,17 @@ class SpendingController {
             return res.json({result: "error"});
         }
       }
+
+              /**
+     * Delete - delete spending 
+     * 
+     * @param {*} req 
+     * @param {*} res 
+     */
+    async deleteSpendingById(req, res) {
+      const goal = await Spending.delete({"_id" : req.query._id });
+      return res.json({result: goal});
+    }
     }
 
 module.exports = new SpendingController();
