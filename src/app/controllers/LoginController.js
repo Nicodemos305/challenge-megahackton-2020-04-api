@@ -1,7 +1,9 @@
 const Yup = require('yup');
 const { Login } = require('../../database/index');
-const { sendConfirmationAccount } = require('../../app/integrations/twilio');
+const Twilio = require('../../app/integrations/twilio');
 const env = require('../../env/environments');
+
+const twilio = env.SEND_TOKEN ? new Twilio() : null;
 
 function createToken() {
   let token = null;
@@ -18,8 +20,12 @@ function createToken() {
 function sendTokenCreateAccount(phone, token) {
   if (env.SEND_TOKEN) {
     // send code confirmation - TWILIO
-    sendConfirmationAccount(phone, token);
+    twilio.sendConfirmationAccount(phone, token);
   }
+}
+
+function getTwilio() {
+  
 }
 
 class LoginController {

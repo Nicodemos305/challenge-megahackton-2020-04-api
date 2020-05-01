@@ -1,28 +1,32 @@
 const twilio = require('twilio');
+const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, PHONE_TWILIO } = require('../../../env/environments');
 
-/**
- * Config keys TWILIO - API
- */
-const twilioClient = twilio(
-  process.env.TWILIO_ACCOUNT_SID,
-  process.env.TWILIO_AUTH_TOKEN
-);
+module.exports = class Twilio {
 
-/**
- *  Send token to confirmate account
- * 
- * @param {*} phone 
- * @param {*} token 
- */
-const sendConfirmationAccount = function(phone, token) {
-  
-  const body = ` PigMoney
-  CONFIRMATION TOKEN: ${token}`;
+  constructor() {
+    this.twilioClient = twilio(
+      TWILIO_ACCOUNT_SID,
+      TWILIO_AUTH_TOKEN
+    );
+  }
 
-  send(phone, body);
+  /**
+   *  Send token to confirmate account
+   * 
+   * @param {*} phone 
+   * @param {*} token 
+   */
+  sendConfirmationAccount(phone, token) {
+    
+    const body = ` PigMoney
+    CONFIRMATION TOKEN: ${token}`;
 
-  return token;
-};
+    send(this.twilioClient, phone, body);
+
+    return token;
+  }
+
+}
 
 /**
  * Send
@@ -30,15 +34,12 @@ const sendConfirmationAccount = function(phone, token) {
  * @param {*} phone 
  * @param {*} body 
  */
-function send(phone, body) {
+function send(twilioClient, phone, body) {
 
   twilioClient.messages.create({
-    from: '+12183775978',
+    from: PHONE_TWILIO,
     to: phone,
     body
   });
-}
 
-module.exports = {
-  sendConfirmationAccount
 }
