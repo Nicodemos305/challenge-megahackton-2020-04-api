@@ -20,9 +20,12 @@ routes.get('/goals', GoalController.getAllGoalsByUserPhone);
 routes.delete('/goal', GoalController.deleteGoalById);
 routes.post('/spending', SpendingController.create);
 routes.get('/spendings', SpendingController.getAllspendings);
+routes.delete('/spending', SpendingController.deleteSpendingById);
 routes.post('/financialAccount', FinancialAccountController.create);
 routes.get('/financialAccount', FinancialAccountController.getFinancialAccountsByUserPhone);
-routes.delete('/spending', SpendingController.deleteSpendingById);
+routes.put('/depositFinancialAccount', FinancialAccountController.depositFinancialAccount);
+
+
 routes.use(authMiddleware);
 
 module.exports = routes;
