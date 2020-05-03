@@ -14,10 +14,6 @@ routes.put('/confirmation', LoginController.confirmationLogin);
 routes.post('/registers', LoginController.create);
 routes.post('/sessions', SessionController.store);
 
-routes.post('/goal', GoalController.create);
-routes.get('/goals', GoalController.getAllGoalsByUserPhone);
-routes.delete('/goal', GoalController.deleteGoalById);
-
 routes.post('/financialAccount', FinancialAccountController.create);
 routes.get('/financialAccount', FinancialAccountController.getFinancialAccountsByUserPhone);
 routes.put('/depositFinancialAccount', FinancialAccountController.depositFinancialAccount);
@@ -31,6 +27,11 @@ routes.post('/spendings', SpendingController.create);
 routes.get('/spendings', SpendingController.getAllspendings);
 routes.put('/spendings', SpendingController.update);
 routes.delete('/spendings', SpendingController.deleteSpendingById);
+
+routes.post('/goals', GoalController.create);
+routes.put('/goals', GoalController.update);
+routes.get('/goals', GoalController.getAllGoalsByUserPhone);
+routes.delete('/goals', GoalController.deleteGoalById);
 
 module.exports = routes;
 
