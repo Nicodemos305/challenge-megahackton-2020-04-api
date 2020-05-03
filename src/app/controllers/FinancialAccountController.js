@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const authConfig = require('../../utils/authUtils');
 const Yup = require('yup');
-const { FinancialAccount } = require('../../database/index');
+const { FinancialAccount, FinancialHistory } = require('../../database/index');
 
 class FinancialAccountController {
 
@@ -52,12 +52,22 @@ class FinancialAccountController {
     * @param {*} res
     */
     async depositFinancialAccount(req, res) {
+        var financialAccount = {};
+        var deposit = req.body.deposit;
         await FinancialAccount.read({"phone" : req.query.phone}).then(function (financiaAccount) {
-            var deposit = req.body.deposit;
-            var financialAccount = financiaAccount[0];
-            financialAccount.balance = financialAccount.balance + deposit;
-            const financiaAccountUpdated = FinancialAccount.update(financialAccount._id, financialAccount);
-            return res.json({result: financiaAccountUpdated });});      
+        financialAccount = financiaAccount[0];
+         });
+         
+         financialAccount.balance = financialAccount.balance + deposit;
+         const financiaAccountUpdated = await FinancialAccount.update(financialAccount._id, financialAccount);
+
+         if (financiaAccountUpdated) {
+            financialAccount.balance = financialAccount.balance + deposit ;
+            FinancialAccount.update(financialAccount._id, financialAccount);
+            var historyObj = {"kind" : "credit", "value" : deposit, "phone" : req.query.phone, "balance" : financialAccount.balance};
+            await FinancialHistory.create(historyObj);
+         }
+         return res.json({result: financiaAccountUpdated });
     }
 
 }

@@ -6,6 +6,8 @@ const GoalController =  require('./app/controllers/GoalController');
 const SpendingController =  require('./app/controllers/SpendingController');
 const FinancialAccountController = require('./app/controllers/FinancialAccountController');
 const GoalForecastController = require('./app/controllers/GoalForecastController');
+const InvestmentController = require('./app/controllers/InvestmentController');
+const FinancialHistoryController = require('./app/controllers/FinancialHistoryController');
 
 const authMiddleware = require('./app/middleware/auth');
 
@@ -14,20 +16,30 @@ const routes = new Router();
 routes.put('/confirmation', LoginController.confirmationLogin);
 routes.post('/registers', LoginController.create);
 routes.post('/sessions', SessionController.store);
-routes.post('/users', UserController.create);
-routes.get('/user', UserController.getUserByPhone);
-routes.post('/goal', GoalController.create);
-routes.get('/goals', GoalController.getAllGoalsByUserPhone);
-routes.delete('/goal', GoalController.deleteGoalById);
-routes.post('/spending', SpendingController.create);
-routes.get('/spendings', SpendingController.getAllspendings);
-routes.delete('/spending', SpendingController.deleteSpendingById);
 routes.post('/financialAccount', FinancialAccountController.create);
 routes.get('/financialAccount', FinancialAccountController.getFinancialAccountsByUserPhone);
 routes.put('/depositFinancialAccount', FinancialAccountController.depositFinancialAccount);
 routes.get('/goalForecast', GoalForecastController.getGoalForecastByPhone);
-
+routes.post('/investment/buy', InvestmentController.buy);
+routes.get('/investment/sell', InvestmentController.sell);
+routes.get('/financialHistory', FinancialHistoryController.getFinancialHistorysByUserPhone);
+routes.get('/investments', InvestmentController.getInvestmentsAllow);
+routes.post('/investments', InvestmentController.create);
 
 routes.use(authMiddleware);
 
+routes.post('/users', UserController.create);
+routes.get('/users', UserController.getUserByPhone);
+
+routes.post('/spendings', SpendingController.create);
+routes.get('/spendings', SpendingController.getAllspendings);
+routes.put('/spendings', SpendingController.update);
+routes.delete('/spendings', SpendingController.deleteSpendingById);
+
+routes.post('/goals', GoalController.create);
+routes.put('/goals', GoalController.update);
+routes.get('/goals', GoalController.getAllGoalsByUserPhone);
+routes.delete('/goals', GoalController.deleteGoalById);
+
 module.exports = routes;
+
