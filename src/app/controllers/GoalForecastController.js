@@ -20,8 +20,6 @@ class GoalForecastController {
       var goalsReachable = [];
       var goalsNotReachable = [];
       try{
-
-
           await FinancialAccount.read({"phone" : req.query.phone}).then(function (financiaAccount) {
             financialAccountData = financiaAccount[0];
           });
@@ -32,7 +30,9 @@ class GoalForecastController {
           
           
           spendingData.forEach(function(spending) { 
-            spendingTotalValue = spendingTotalValue + spending.value;
+            if(spending && spending.value){
+              spendingTotalValue = spendingTotalValue + spending.value;
+            }
           });
 
           console.log(spendingData);
@@ -44,17 +44,17 @@ class GoalForecastController {
 
           extract = financialAccountData.balance - spendingTotalValue;
           goalData.forEach(function(goalVO) { 
-            
-            if(goalVO.value < extract){
-              goalsReachable.push(goalVO);
-            }
-
-            if(extract < goalVO.value){
-              goalsNotReachable.push(goalVO);
+            if(goalVO && goalVO.value){
+              if(goalVO.value < extract){
+                goalsReachable.push(goalVO);
+              }
+  
+              if(extract < goalVO.value){
+                goalsNotReachable.push(goalVO);
+              }
             }
           });
 
-        
          var forecast = {"extract" : extract, "balance" : financialAccountData.balance, "spendingTotalValue" : spendingTotalValue, "totalGoals" : goalData.length, "goalsReachable" : goalsReachable, "goalsNotReachable" : goalsNotReachable, "totalGoalsReachable" : goalsReachable.length, "totalGoalsNotReachable" : goalsNotReachable.length};
          
          console.log(spendingTotalValue);
