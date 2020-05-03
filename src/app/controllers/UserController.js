@@ -24,7 +24,7 @@ class UserController {
 
   async getUserByPhone(req, res) {
     try{
-        var user = await User.read({"phone" : req.query.phone}).then(function (user) {
+        var user = await User.read({"phone" : req.user.phone}).then(function (user) {
             return res.status(200).json({result: user});
           });
         console.log("Success :".concat(JSON.stringify(user)));

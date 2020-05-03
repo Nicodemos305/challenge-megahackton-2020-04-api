@@ -13,16 +13,20 @@ const routes = new Router();
 routes.put('/confirmation', LoginController.confirmationLogin);
 routes.post('/registers', LoginController.create);
 routes.post('/sessions', SessionController.store);
-routes.post('/users', UserController.create);
-routes.get('/user', UserController.getUserByPhone);
+
 routes.post('/goal', GoalController.create);
 routes.get('/goals', GoalController.getAllGoalsByUserPhone);
 routes.delete('/goal', GoalController.deleteGoalById);
-routes.post('/spending', SpendingController.create);
-routes.get('/spendings', SpendingController.getAllspendings);
 routes.post('/financialAccount', FinancialAccountController.create);
 routes.get('/financialAccount', FinancialAccountController.getFinancialAccountsByUserPhone);
-routes.delete('/spending', SpendingController.deleteSpendingById);
 routes.use(authMiddleware);
 
 module.exports = routes;
+
+routes.post('/users', UserController.create);
+routes.get('/users', UserController.getUserByPhone);
+
+routes.post('/spendings', SpendingController.create);
+routes.get('/spendings', SpendingController.getAllspendings);
+routes.put('/spendings', SpendingController.update);
+routes.delete('/spendings', SpendingController.deleteSpendingById);

@@ -41,6 +41,10 @@ class MongoDB {
     this._connection.once('open', () => console.log('database rodando!!'));
   }
 
+  async findById(_id) {
+    return this._schema.findById(_id);
+  }
+
   async create(item) {
       return this._schema.create(item);
   }
