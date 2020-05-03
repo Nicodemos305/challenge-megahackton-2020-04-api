@@ -5,6 +5,7 @@ const UserController =  require('./app/controllers/UserController');
 const GoalController =  require('./app/controllers/GoalController');
 const SpendingController =  require('./app/controllers/SpendingController');
 const FinancialAccountController = require('./app/controllers/FinancialAccountController');
+const GoalForecastController = require('./app/controllers/GoalForecastController');
 const InvestmentController = require('./app/controllers/InvestmentController');
 const FinancialHistoryController = require('./app/controllers/FinancialHistoryController');
 
@@ -18,6 +19,7 @@ routes.post('/sessions', SessionController.store);
 routes.post('/financialAccount', FinancialAccountController.create);
 routes.get('/financialAccount', FinancialAccountController.getFinancialAccountsByUserPhone);
 routes.put('/depositFinancialAccount', FinancialAccountController.depositFinancialAccount);
+routes.get('/goalForecast', GoalForecastController.getGoalForecastByPhone);
 routes.post('/investment/buy', InvestmentController.buy);
 routes.get('/investment/sell', InvestmentController.sell);
 routes.get('/financialHistory', FinancialHistoryController.getFinancialHistorysByUserPhone);
