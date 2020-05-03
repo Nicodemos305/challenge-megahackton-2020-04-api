@@ -53,10 +53,16 @@ class SpendingController {
        */
       async getAllspendings(req, res) {
         try{
+<<<<<<< HEAD
             var spendings = await Spending.read({"phone" : req.user.phone}).then(function (spendings) {
                 return res.json({result: spendings, total : spendings.length});
             });
             // console.log("Success :".concat(JSON.stringify(spendings)));
+=======
+              await Spending.read({"phone" : req.query.phone}).then(function (spendings) {
+              return res.status(200).json({result: spendings, total : spendings.length});
+            });
+>>>>>>> 35745ad08fdbbf950c1b0803e8d466fe8012728f
         }catch(err){
             console.log(err);
             return res.status(500).json({result: "error"});
@@ -70,9 +76,14 @@ class SpendingController {
      * @param {*} res 
      */
     async deleteSpendingById(req, res) {
-      const goal = await Spending.delete({"_id" : req.query._id });
-      return res.json({result: goal});
+      try{
+        await Spending.delete({"_id" : req.query._id });
+        return res.json({result: goal});
+      }catch(err){
+        console.log(err);
+        return res.status(500).json({result: "error"});
+      }
     }
-    }
+}
 
 module.exports = new SpendingController();

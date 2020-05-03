@@ -17,11 +17,12 @@ routes.post('/sessions', SessionController.store);
 routes.post('/goal', GoalController.create);
 routes.get('/goals', GoalController.getAllGoalsByUserPhone);
 routes.delete('/goal', GoalController.deleteGoalById);
+
 routes.post('/financialAccount', FinancialAccountController.create);
 routes.get('/financialAccount', FinancialAccountController.getFinancialAccountsByUserPhone);
-routes.use(authMiddleware);
+routes.put('/depositFinancialAccount', FinancialAccountController.depositFinancialAccount);
 
-module.exports = routes;
+routes.use(authMiddleware);
 
 routes.post('/users', UserController.create);
 routes.get('/users', UserController.getUserByPhone);
@@ -30,3 +31,6 @@ routes.post('/spendings', SpendingController.create);
 routes.get('/spendings', SpendingController.getAllspendings);
 routes.put('/spendings', SpendingController.update);
 routes.delete('/spendings', SpendingController.deleteSpendingById);
+
+module.exports = routes;
+

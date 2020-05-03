@@ -12,8 +12,13 @@ class GoalController {
      * @param {*} res 
      */
     async create(req, res) {
-      const goal = await Goal.create(req.body);
-      return res.json({result: goal});
+      try{
+        const goal = await Goal.create(req.body);
+        return res.status(201).json({result: goal});
+      }catch(err){
+        console.log(err);
+        return res.status(500).json({result: "error"});
+      }
     }
     
     /**
@@ -24,13 +29,17 @@ class GoalController {
      */
     async getAllGoalsByUserPhone(req, res) {
       try{
+<<<<<<< HEAD
           var goals = await Goal.read({"phone" : req.user.phone}).then(function (goals) {
               return res.json({result: goals, total : goals.length});
+=======
+          await Goal.read({"phone" : req.query.phone}).then(function (goals) {
+              return res.status(200).json({result: goals, total : goals.length});
+>>>>>>> 35745ad08fdbbf950c1b0803e8d466fe8012728f
           });
-          console.log("Success :".concat(JSON.stringify(goals)));
       }catch(err){
           console.log(err);
-          return res.json({result: "error"});
+          return res.status(500).json({result: "error"});
       }
     }
 
@@ -41,8 +50,13 @@ class GoalController {
      * @param {*} res 
      */
     async deleteGoalById(req, res) {
-      const goal = await Goal.delete({"_id" : req.query._id });
-      return res.json({result: goal});
+      try{
+         await Goal.delete({"_id" : req.query._id });
+         return res.status(200).json({});
+      }catch(err){
+        console.log(err);
+        return res.status(500).json({result: "error"});
+      }
     }
   }
 

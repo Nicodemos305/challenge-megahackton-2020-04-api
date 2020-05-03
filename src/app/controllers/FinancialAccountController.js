@@ -25,10 +25,9 @@ class FinancialAccountController {
      */
     async getFinancialAccountsByUserPhone(req, res) {
         try{
-            var financialAccounts = await FinancialAccount.read({"phone" : req.query.phone}).then(function (financiaAccount) {
+            await FinancialAccount.read({"phone" : req.query.phone}).then(function (financiaAccount) {
                 return res.json({result: financiaAccount });
         });
-        console.log("success :".concat(JSON.stringify(financialAccounts)));
     }catch(err){
         console.log(err);
         return res.json({result: "error"});
@@ -42,8 +41,23 @@ class FinancialAccountController {
      * @param {*} res
      */
     async deleteFinancialAccountById(req, res) {
-        const financialAccount = await FinancialAccount.delete({"_id" : req.query._id});
+     await FinancialAccount.delete({"_id" : req.query._id});
         return res.json({result: financialAccount});
+    }
+
+    /**
+    * creat - creat financiaAccount
+    * 
+    * @param {*} req
+    * @param {*} res
+    */
+    async depositFinancialAccount(req, res) {
+        await FinancialAccount.read({"phone" : req.query.phone}).then(function (financiaAccount) {
+            var deposit = req.body.deposit;
+            var financialAccount = financiaAccount[0];
+            financialAccount.balance = financialAccount.balance + deposit;
+            const financiaAccountUpdated = FinancialAccount.update(financialAccount._id, financialAccount);
+            return res.json({result: financiaAccountUpdated });});      
     }
 
 }

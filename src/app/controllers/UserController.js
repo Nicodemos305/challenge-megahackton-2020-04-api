@@ -13,7 +13,7 @@ class UserController {
    */
   async create(req, res) {
     try{
-      const user = await User.create(req.body);
+      await User.create(req.body);
       return res.status(201).json({result: user});
     }catch(err){
       console.log(err);
@@ -24,10 +24,13 @@ class UserController {
 
   async getUserByPhone(req, res) {
     try{
+<<<<<<< HEAD
         var user = await User.read({"phone" : req.user.phone}).then(function (user) {
+=======
+        await User.read({"phone" : req.query.phone}).then(function (user) {
+>>>>>>> 35745ad08fdbbf950c1b0803e8d466fe8012728f
             return res.status(200).json({result: user});
           });
-        console.log("Success :".concat(JSON.stringify(user)));
     }catch(err){
         console.log(err);
         return res.status(500).json({result: "error"});
