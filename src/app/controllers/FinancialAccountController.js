@@ -5,18 +5,6 @@ const { FinancialAccount, FinancialHistory } = require('../../database/index');
 
 class FinancialAccountController {
 
-
-       /**
-        * creat - creat financiaAccount
-        * 
-        * @param {*} req
-        * @param {*} res
-        */
-    async create(req, res) {
-        const financiaAccount = await FinancialAccount.create(req.body);
-        return res.json({result: financiaAccount});
-    }
-
     /**
      * GetAll - get financialAccounts
      * 
@@ -33,17 +21,6 @@ class FinancialAccountController {
         return res.json({result: "error"});
     }
 }
-
-    /**
-     * Delete - delete financialAccount
-     * 
-     * @param {*} req
-     * @param {*} res
-     */
-    async deleteFinancialAccountById(req, res) {
-     await FinancialAccount.delete({"_id" : req.query._id});
-        return res.json({result: financialAccount});
-    }
 
     /**
     * creat - creat financiaAccount

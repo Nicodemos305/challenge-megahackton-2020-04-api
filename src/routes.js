@@ -16,7 +16,6 @@ const routes = new Router();
 routes.put('/confirmation', LoginController.confirmationLogin);
 routes.post('/registers', LoginController.create);
 routes.post('/sessions', SessionController.store);
-routes.post('/financialAccount', FinancialAccountController.create);
 routes.get('/financialAccount', FinancialAccountController.getFinancialAccountsByUserPhone);
 routes.put('/depositFinancialAccount', FinancialAccountController.depositFinancialAccount);
 routes.get('/goalForecast', GoalForecastController.getGoalForecastByPhone);
