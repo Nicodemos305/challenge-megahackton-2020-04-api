@@ -15,7 +15,6 @@ const routes = new Router();
 routes.put('/confirmation', LoginController.confirmationLogin);
 routes.post('/registers', LoginController.create);
 routes.post('/sessions', SessionController.store);
-routes.post('/financialAccount', FinancialAccountController.create);
 routes.get('/financialAccount', FinancialAccountController.getFinancialAccountsByUserPhone);
 routes.put('/depositFinancialAccount', FinancialAccountController.depositFinancialAccount);
 routes.post('/investment/buy', InvestmentController.buy);
@@ -38,6 +37,8 @@ routes.post('/goals', GoalController.create);
 routes.put('/goals', GoalController.update);
 routes.get('/goals', GoalController.getAllGoalsByUserPhone);
 routes.delete('/goals', GoalController.deleteGoalById);
+
+routes.post('/financialAccount', FinancialAccountController.create);
 
 module.exports = routes;
 

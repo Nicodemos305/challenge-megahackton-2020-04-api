@@ -13,6 +13,7 @@ class FinancialAccountController {
         * @param {*} res
         */
     async create(req, res) {
+        req.body.phone = req.user.phone;
         const financiaAccount = await FinancialAccount.create(req.body);
         return res.json({result: financiaAccount});
     }
