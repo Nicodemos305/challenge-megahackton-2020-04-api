@@ -32,7 +32,15 @@ routes.get('/financialHistory', FinancialHistoryController.getFinancialHistorysB
 routes.get('/investments', InvestmentController.getInvestmentsAllow);
 routes.post('/investments', InvestmentController.create);
 
-
 routes.use(authMiddleware);
 
+routes.post('/users', UserController.create);
+routes.get('/users', UserController.getUserByPhone);
+
+routes.post('/spendings', SpendingController.create);
+routes.get('/spendings', SpendingController.getAllspendings);
+routes.put('/spendings', SpendingController.update);
+routes.delete('/spendings', SpendingController.deleteSpendingById);
+
 module.exports = routes;
+

@@ -13,8 +13,32 @@ class SpendingController {
      */
     async create(req, res) {
       try{
+        req.body.phone = req.user.phone;
+        req.body.value = Number(req.body.value.replace(',', '.'));
         const spending = await Spending.create(req.body);
         return res.status(201).json({result: spending});
+      }catch(err){
+        console.log(err);
+        return res.status(500).json({result: "error"});
+      }
+    }
+
+    async update(req, res) {
+      try{
+        req.body.phone = req.user.phone;
+        req.body.value = Number(req.body.value.replace(',', '.'));
+
+        const update = await Spending.findById(req.body._id);
+
+        const {name, kind, payday, value} = req.body;
+
+        update.name = name;
+        update.value = value;
+        update.kind = kind;
+        update.payday = payday;
+
+        await update.save();
+        return res.status(204).json();
       }catch(err){
         console.log(err);
         return res.status(500).json({result: "error"});
@@ -29,8 +53,8 @@ class SpendingController {
        */
       async getAllspendings(req, res) {
         try{
-              await Spending.read({"phone" : req.query.phone}).then(function (spendings) {
-              return res.status(200).json({result: spendings, total : spendings.length});
+            var spendings = await Spending.read({"phone" : req.user.phone}).then(function (spendings) {
+                return res.json({result: spendings, total : spendings.length});
             });
         }catch(err){
             console.log(err);
@@ -47,7 +71,7 @@ class SpendingController {
     async deleteSpendingById(req, res) {
       try{
         await Spending.delete({"_id" : req.query._id });
-        return res.json({result: goal});
+        return res.status(200).json();
       }catch(err){
         console.log(err);
         return res.status(500).json({result: "error"});
