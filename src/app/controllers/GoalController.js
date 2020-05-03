@@ -29,13 +29,8 @@ class GoalController {
      */
     async getAllGoalsByUserPhone(req, res) {
       try{
-<<<<<<< HEAD
           var goals = await Goal.read({"phone" : req.user.phone}).then(function (goals) {
               return res.json({result: goals, total : goals.length});
-=======
-          await Goal.read({"phone" : req.query.phone}).then(function (goals) {
-              return res.status(200).json({result: goals, total : goals.length});
->>>>>>> 35745ad08fdbbf950c1b0803e8d466fe8012728f
           });
       }catch(err){
           console.log(err);

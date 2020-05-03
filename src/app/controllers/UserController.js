@@ -24,11 +24,8 @@ class UserController {
 
   async getUserByPhone(req, res) {
     try{
-<<<<<<< HEAD
         var user = await User.read({"phone" : req.user.phone}).then(function (user) {
-=======
-        await User.read({"phone" : req.query.phone}).then(function (user) {
->>>>>>> 35745ad08fdbbf950c1b0803e8d466fe8012728f
+        
             return res.status(200).json({result: user});
           });
     }catch(err){
