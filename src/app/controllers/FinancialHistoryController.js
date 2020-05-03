@@ -5,7 +5,6 @@ const { FinancialHistory } = require('../../database/index');
 
 class FinancialHistoryController {
 
-    
     async getFinancialHistorysByUserPhone(req, res) {
         try{
             await FinancialHistory.read({"phone" : req.query.phone}).then(function (financialHistory) {
