@@ -20,7 +20,6 @@ routes.get('/financialAccount', FinancialAccountController.getFinancialAccountsB
 routes.put('/depositFinancialAccount', FinancialAccountController.depositFinancialAccount);
 routes.post('/investment/buy', InvestmentController.buy);
 routes.get('/investment/sell', InvestmentController.sell);
-routes.get('/financialHistory', FinancialHistoryController.getFinancialHistorysByUserPhone);
 routes.get('/investments', InvestmentController.getInvestmentsAllow);
 routes.post('/investments', InvestmentController.create);
 
@@ -42,6 +41,7 @@ routes.delete('/goals', GoalController.deleteGoalById);
 routes.get('/goalForecast', GoalForecastController.getGoalForecastByPhone);
 
 routes.post('/financialAccount', FinancialAccountController.create);
+routes.get('/financialHistory', FinancialHistoryController.getFinancialHistorysByUserPhone);
 
 module.exports = routes;
 

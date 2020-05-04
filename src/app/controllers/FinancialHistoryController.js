@@ -7,7 +7,7 @@ class FinancialHistoryController {
 
     async getFinancialHistorysByUserPhone(req, res) {
         try{
-            await FinancialHistory.read({"phone" : req.query.phone}).then(function (financialHistory) {
+            await FinancialHistory.read({"phone" : req.user.phone}).then(function (financialHistory) {
                 return res.json({result: financialHistory });
         });
     }catch(err){
