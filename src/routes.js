@@ -17,13 +17,10 @@ const routes = new Router();
 routes.put('/confirmation', LoginController.confirmationLogin);
 routes.post('/registers', LoginController.create);
 routes.post('/sessions', SessionController.store);
-routes.get('/financialAccount', FinancialAccountController.getFinancialAccountsByUserPhone);
-routes.put('/depositFinancialAccount', FinancialAccountController.depositFinancialAccount);
 routes.post('/investment/buy', InvestmentController.buy);
 routes.get('/investment/sell', InvestmentController.sell);
 routes.get('/investments', InvestmentController.getInvestmentsAllow);
 routes.post('/investments', InvestmentController.create);
-routes.get('/conquest', ConquestController.getAll);
 
 routes.use(authMiddleware);
 
@@ -44,6 +41,8 @@ routes.get('/goalForecast', GoalForecastController.getGoalForecastByPhone);
 
 routes.post('/financialAccount', FinancialAccountController.create);
 routes.get('/financialHistory', FinancialHistoryController.getFinancialHistorysByUserPhone);
+
+routes.post('/depositFinancialAccount', FinancialAccountController.depositFinancialAccount);
 
 routes.get('/conquest', ConquestController.getAll);
 

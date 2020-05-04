@@ -24,10 +24,6 @@ function sendTokenCreateAccount(phone, token) {
   }
 }
 
-function getTwilio() {
-  
-}
-
 class LoginController {
 
   /**
