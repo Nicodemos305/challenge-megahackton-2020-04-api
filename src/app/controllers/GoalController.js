@@ -45,24 +45,6 @@ class GoalController {
     }
     
     /**
-     * Create - create goal 
-     * 
-     * @param {*} req 
-     * @param {*} res 
-     */
-    async create(req, res) {
-      try{
-        req.body.phone = req.user.phone;
-        req.body.value = Number(req.body.value.replace(',', '.'));
-        const goal = await Goal.create(req.body);
-        return res.status(201).json({result: goal});
-      }catch(err){
-        console.log(err);
-        return res.status(500).json({result: "error"});
-      }
-    }
-    
-    /**
      * GetAll - get goals
      * 
      * @param {*} res 
