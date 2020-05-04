@@ -20,7 +20,7 @@ class GoalForecastController {
       var goalsReachable = [];
       var goalsNotReachable = [];
       try{
-          await FinancialAccount.read({"phone" : req.query.phone}).then(function (financiaAccount) {
+          await FinancialAccount.read({"phone" : req.user.phone}).then(function (financiaAccount) {
             financialAccountData = financiaAccount[0];
           });
 
