@@ -6,6 +6,7 @@ const SpendingSchema = require('../app/models/Spending');
 const FinancialAccountSchema = require('../app/models/FinancialAccount');
 const FinancialHistorySchema = require('../app/models/FinancialHistory');
 const InvestmentSchema = require('../app/models/Investment');
+const investmenUsertSchema = require('../app/models/InvestmentUser');
 
 const Login = new MongoDB(LoginSchema);
 const User = new MongoDB(UserSchema);
@@ -14,6 +15,7 @@ const Spending = new MongoDB(SpendingSchema);
 const FinancialAccount = new MongoDB(FinancialAccountSchema);
 const FinancialHistory = new MongoDB(FinancialHistorySchema);
 const Investment = new MongoDB(InvestmentSchema);
+const InvestmenUser = new MongoDB(investmenUsertSchema);
 module.exports = {
   Login,
   User,
@@ -21,5 +23,6 @@ module.exports = {
   Spending,
   FinancialAccount,
   FinancialHistory,
-  Investment
+  Investment,
+  InvestmenUser
 };
