@@ -42,7 +42,7 @@ routes.get('/goalForecast', GoalForecastController.getGoalForecastByPhone);
 routes.post('/financialAccount', FinancialAccountController.create);
 routes.get('/financialHistory', FinancialHistoryController.getFinancialHistorysByUserPhone);
 
-routes.post('/depositFinancialAccount', FinancialAccountController.depositFinancialAccount);
+routes.put('/depositFinancialAccount', FinancialAccountController.depositFinancialAccount);
 
 routes.get('/conquest', ConquestController.getAll);
 
