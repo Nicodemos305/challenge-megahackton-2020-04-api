@@ -5,6 +5,7 @@ const UserController =  require('./app/controllers/UserController');
 const GoalController =  require('./app/controllers/GoalController');
 const SpendingController =  require('./app/controllers/SpendingController');
 const FinancialAccountController = require('./app/controllers/FinancialAccountController');
+const GoalForecastController = require('./app/controllers/GoalForecastController');
 const InvestmentController = require('./app/controllers/InvestmentController');
 const FinancialHistoryController = require('./app/controllers/FinancialHistoryController');
 
@@ -37,6 +38,8 @@ routes.post('/goals', GoalController.create);
 routes.put('/goals', GoalController.update);
 routes.get('/goals', GoalController.getAllGoalsByUserPhone);
 routes.delete('/goals', GoalController.deleteGoalById);
+
+routes.get('/goalForecast', GoalForecastController.getGoalForecastByPhone);
 
 routes.post('/financialAccount', FinancialAccountController.create);
 
