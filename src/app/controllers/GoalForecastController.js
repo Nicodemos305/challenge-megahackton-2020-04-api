@@ -24,7 +24,7 @@ class GoalForecastController {
             financialAccountData = financiaAccount[0];
           });
 
-          await Spending.read({"phone" : req.query.phone}).then(function (spendings) {
+          await Spending.read({"phone" : req.user.phone}).then(function (spendings) {
             spendingData = spendings;
           });
           
@@ -38,7 +38,7 @@ class GoalForecastController {
           console.log(spendingData);
 
           
-          await Goal.read({"phone" : req.query.phone}).then(function (goals) {
+          await Goal.read({"phone" : req.user.phone}).then(function (goals) {
             goalData = goals;
           });
 
