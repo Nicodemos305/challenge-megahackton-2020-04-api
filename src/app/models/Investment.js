@@ -11,11 +11,6 @@ const investmentSchema = new Mongoose.Schema({
         type: Number,
         required: true
     },
-
-    price: {
-        type: Number,
-        required: true
-    },
 });
 
 module.exports = Mongoose.models.investment || Mongoose.model('Investment', investmentSchema);
