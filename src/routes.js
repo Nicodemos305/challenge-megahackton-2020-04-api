@@ -8,6 +8,7 @@ const FinancialAccountController = require('./app/controllers/FinancialAccountCo
 const GoalForecastController = require('./app/controllers/GoalForecastController');
 const InvestmentController = require('./app/controllers/InvestmentController');
 const FinancialHistoryController = require('./app/controllers/FinancialHistoryController');
+const ConquestController = require('./app/controllers/ConquestController');
 
 const authMiddleware = require('./app/middleware/auth');
 
@@ -22,6 +23,7 @@ routes.post('/investment/buy', InvestmentController.buy);
 routes.get('/investment/sell', InvestmentController.sell);
 routes.get('/investments', InvestmentController.getInvestmentsAllow);
 routes.post('/investments', InvestmentController.create);
+routes.get('/conquest', ConquestController.getAll);
 
 routes.use(authMiddleware);
 
@@ -42,6 +44,8 @@ routes.get('/goalForecast', GoalForecastController.getGoalForecastByPhone);
 
 routes.post('/financialAccount', FinancialAccountController.create);
 routes.get('/financialHistory', FinancialHistoryController.getFinancialHistorysByUserPhone);
+
+routes.get('/conquest', ConquestController.getAll);
 
 module.exports = routes;
 

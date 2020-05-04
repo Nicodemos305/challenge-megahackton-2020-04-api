@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const authConfig = require('../../utils/authUtils');
 const Yup = require('yup');
-const { FinancialAccount, FinancialHistory, Investment } = require('../../database/index');
+const { FinancialAccount, FinancialHistory, Investment, InvestmenUser } = require('../../database/index');
 
 class InvestmentController {
 
@@ -31,22 +31,32 @@ class InvestmentController {
      * @param {*} res 
      */
     async buy(req, res) {
-        var investmentValue = req.body.value;
-        var financialAccount = {};
-        await FinancialAccount.read({"phone" : req.body.phone}).then(function (financiaAccountVo) {
-            financialAccount = financiaAccountVo[0];
-    });
-    var isValidInvestment = (financialAccount.balance - investmentValue) > 0;
-    if(isValidInvestment){
-        financialAccount.balance = financialAccount.balance - investmentValue ;
-        FinancialAccount.update(financialAccount._id, financialAccount);
-        var historyObj = {"kind" : "debit", "value" : investmentValue, "phone" : req.body.phone, "balance" : financialAccount.balance};
-        await FinancialHistory.create(historyObj);
-        return res.json({result: "você investiu"});
-    } else{
-        return res.json({result: "Saldo insuficiente"}); 
-    }
-        
+        try{
+            var investmentValue = req.body.value;
+            var financialAccount = {};
+            await FinancialAccount.read({"phone" : req.body.phone}).then(function (financiaAccountVo) {
+                financialAccount = financiaAccountVo[0];
+        });
+        var isValidInvestment = (financialAccount.balance - investmentValue) > 0;
+
+        if(isValidInvestment){
+            financialAccount.balance = financialAccount.balance - investmentValue ;
+            var investmentUser = {"phone" : req.body.phone, "idInvestment" : req.body.idInvestment, "value" : investmentValue};
+            await InvestmenUser.create(investmentUser);
+    
+            FinancialAccount.update(financialAccount._id, financialAccount);
+  
+            var historyObj = {"kind" : "Investimento", "value" : investmentValue, "phone" : req.body.phone, "balance" : financialAccount.balance};
+            await FinancialHistory.create(historyObj);
+       
+            return res.json({result: "você investiu"});
+        } else{
+            return res.json({result: "Saldo insuficiente"}); 
+        }
+        }catch(err){
+            console.log(err);
+            return res.status(500).json({result: err});
+        }   
     }
 
     /**

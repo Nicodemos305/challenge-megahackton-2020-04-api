@@ -52,7 +52,7 @@ class FinancialAccountController {
          if (financiaAccountUpdated) {
             financialAccount.balance = financialAccount.balance + deposit ;
             FinancialAccount.update(financialAccount._id, financialAccount);
-            var historyObj = {"kind" : "credit", "value" : deposit, "phone" : req.query.phone, "balance" : financialAccount.balance};
+            var historyObj = {"kind" : "Depósito", "value" : deposit, "phone" : req.query.phone, "balance" : financialAccount.balance};
             await FinancialHistory.create(historyObj);
          }
          return res.json({result: financiaAccountUpdated });
