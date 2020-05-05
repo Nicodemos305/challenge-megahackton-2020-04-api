@@ -10,7 +10,6 @@ class ConquestController {
             var conquest = [];
             var goalsResult = [];
             var investmentsResult = [];
-            var goalsReachable = [];
             conquest.push({"name" : "Parabéns! agora PigMoney vai te ajudar com suas finanças."});
             
             await Goal.read({"phone" : req.user.phone}).then(function (goals) {
@@ -36,16 +35,8 @@ class ConquestController {
                 conquest.push({"name" : "Parabéns Poupador, investiu duas vezes."});
             }
 
-            goalsResult.forEach(function(goalVO) { 
-                if(goalVO && goalVO.value){
-                if(goalVO.value < extract){
-                    goalsReachable.push(goalVO);
-                }
-    
-                }
-            });
-
-            if(goalsReachable.length > 0){
+   
+            if(goalsResult.length > 0){
                 conquest.push({"name" : "Você conseguiu poupar para seu primeiro objetivo."});
             }
 
