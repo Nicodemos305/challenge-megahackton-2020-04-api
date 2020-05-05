@@ -42,20 +42,24 @@ class GoalForecastController {
             goalData = goals;
           });
 
-          extract = financialAccountData.balance - spendingTotalValue;
-          goalData.forEach(function(goalVO) { 
-            if(goalVO && goalVO.value){
-              if(goalVO.value < extract){
-                goalsReachable.push(goalVO);
+          let balance = 0.00;
+          if (financialAccountData && financialAccountData.balance) {
+            balance = financialAccountData.balance;
+            extract = balance - spendingTotalValue;
+            goalData.forEach(function(goalVO) { 
+              if(goalVO && goalVO.value){
+                if(goalVO.value < extract){
+                  goalsReachable.push(goalVO);
+                }
+    
+                if(extract < goalVO.value){
+                  goalsNotReachable.push(goalVO);
+                }
               }
-  
-              if(extract < goalVO.value){
-                goalsNotReachable.push(goalVO);
-              }
-            }
-          });
+            });
+          }
 
-         var forecast = {"extract" : extract, "balance" : financialAccountData.balance, "spendingTotalValue" : spendingTotalValue, "totalGoals" : goalData.length, "goalsReachable" : goalsReachable, "goalsNotReachable" : goalsNotReachable, "totalGoalsReachable" : goalsReachable.length, "totalGoalsNotReachable" : goalsNotReachable.length, "spendingTotal" : spendingTotal};
+         var forecast = {"extract" : extract, "balance" : balance, "spendingTotalValue" : spendingTotalValue, "totalGoals" : goalData.length, "goalsReachable" : goalsReachable, "goalsNotReachable" : goalsNotReachable, "totalGoalsReachable" : goalsReachable.length, "totalGoalsNotReachable" : goalsNotReachable.length, "spendingTotal" : spendingTotal};
          
          console.log(spendingTotalValue);
          return res.status(200).json({result: forecast});

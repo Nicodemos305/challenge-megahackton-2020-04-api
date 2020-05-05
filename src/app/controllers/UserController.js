@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const authConfig = require('../../utils/authUtils');
 const Yup = require('yup');
-const { User, FinancialAccount } = require('../../database/index');
+const { User, FinancialAccount, Login } = require('../../database/index');
 
 class UserController {
 
@@ -13,10 +13,15 @@ class UserController {
    */
   async create(req, res) {
     try{
+      req.body.phone = req.user.phone;
+      req.body.salary = Number(req.body.salary.replace(',', '.'));
       var user = req.body;
-      var financialAccount = { "phone" : user.phone, "balance" : 0 };
+      var financialAccount = { "phone" : req.user.phone, "balance" : 0 };
       await User.create(req.body);
       await FinancialAccount.create(financialAccount);
+      const login = await Login.findById(req.user._id);
+      login.createdUserAt = new Date();
+      await login.save();
       return res.status(201).json({result: user});
     }catch(err){
       console.log(err);
