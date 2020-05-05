@@ -6,7 +6,9 @@ const authConfig = require('../../utils/authUtils');
 
 module.exports = async (req, res, next) => {
 
+  
   const authHeader = req.headers.authorization;
+  console.log(req, authHeader);
 
   if (!authHeader) {
     const error  = { error: 'Token not provided' };
@@ -19,6 +21,8 @@ module.exports = async (req, res, next) => {
   const [, token] = authHeader.split(' ');
 
   try {
+
+    console.log(token);
 
     const decode = await promisify(jwt.verify)(token, authConfig.secret);
 

@@ -36,11 +36,15 @@ class SessionController {
     if (!login) {
       return res.status(404).json({ error: 'Login not found' });
     }
-    
-    return res.json({
+
+    const loginUser = {
       token: jwt.sign({ _id: login._id, phone: login.phone }, authConfig.secret, { expiresIn: authConfig.expiresIn }),
       createdUser: !!login.createdUserAt
-    });
+    };
+
+    console.log(loginUser);
+    
+    return res.json(loginUser);
   }
   
 }
